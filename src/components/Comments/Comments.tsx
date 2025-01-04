@@ -48,7 +48,7 @@ function CommentsSection() {
         />
         <button
           type="submit"
-          className="mt-2 px-4 py-2 bg-blue-500 text-white sm:px-6 sm:py-2 rounded-lg hover:bg-blue-600 text-sm sm:text-base"
+          className="mt-3 px-4 py-2 bg-blue-500 text-white sm:px-6 sm:py-2 rounded-lg hover:bg-blue-600 text-sm sm:text-base"
         >
           Submit
         </button>
