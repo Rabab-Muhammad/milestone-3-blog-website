@@ -8,7 +8,7 @@ interface IBlog {
   date: string;
 }
 
-async function getBlogById(id: string) {
+async function getBlogById(id: number) {
   const fetchdata = await client.fetch(
     `
     *[_type == "blogPost" && _id == $id][0] {
@@ -28,9 +28,11 @@ async function getBlogById(id: string) {
 export default async function BlogDetail({
   params,
 }: {
-  params: { id: string };
+  params: { id: number };
 }) {
   const blog: IBlog = await getBlogById(params.id);
+  console.log(blog);
+  
 
   return (
     <div className="p-4 sm:p-6 max-w-4xl mx-auto shadow-2xl my-5">
