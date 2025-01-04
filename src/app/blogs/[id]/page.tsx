@@ -80,7 +80,6 @@
 
 import { client } from "@/sanity/lib/client";
 
-
 interface IBlog {
   imageUrl: string;
   title: string;
@@ -106,18 +105,13 @@ async function getBlogById(id: string) {
   return fetchdata;
 }
 
-// Define dynamic params for static generation
-export async function generateStaticParams() {
-  const posts = await client.fetch(`*[_type == "blogPost"]{_id}`);
-  return posts.map((post: { _id: string }) => ({ id: post._id }));
-}
-
 export default async function BlogDetail({
-  params,
+  params: promiseParams,
 }: {
-  params: { id: string }; 
+  params: Promise<{ id: string }>; // Correcting to promise-based type
 }) {
-  const blog: IBlog = await getBlogById(params.id);
+  const { id } = await promiseParams; // Awaiting params to resolve the promise
+  const blog: IBlog = await getBlogById(id);
 
   if (!blog) {
     return <div>Blog not found.</div>;
